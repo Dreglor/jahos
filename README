@@ -1,0 +1,13 @@
+JAHOS - Just Another Hobbyist Operating System 
+ 
+JAHOS is a simple OS that has been created for the sole purpose of learning about operating system design and implementation. 
+is has been used to write a column in my blog at "dreglor.blogspot.com". I will post and write examples as I go through the learning process my self.  
+These examples can be found in there respective branches however master will always point to the latest working code. 
+ 
+Any one is willing to contribute to the project for fixes and additions on master however I would ask if you would contact me if you have a proposal for an addition to the examples I will almost always say yes.I can be contacted here: "Dreglor@gmail.com". A note to any commits to any branch must update the "CHANGELOG" file with any additions & modifications as well as a short description to what changed. Also new commiters must update the "CONTRIBUTORS" with there handle at the vary least. 
+ 
+All source, headers, scripts and binaries should be protected under the BSD 3-clause license included which can be found in "LICENSE" file and simply puts just means you must keep the LICENSE file and any code containing it intact and would need to contact me if you use it in any commercial fashion, which I don't expect you would.  
+ 
+Enjoy learning from this code 
+~Steven "Dreglor" Garcia
+ 

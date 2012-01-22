@@ -1,0 +1,14 @@
+#temp
+*~
+*.tmp
+*.swp
+
+#binaries
+*.a
+*.o
+*.bin
+*.elf
+
+#generated
+obj/
+bin/
