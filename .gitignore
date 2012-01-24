@@ -8,7 +8,10 @@
 *.o
 *.bin
 *.elf
+*.img
 
 #generated
 obj/
 bin/
+*.log
+
