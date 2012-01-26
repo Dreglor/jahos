@@ -39,7 +39,7 @@ INCDIR += -I. \
 		  -I./inc
 		  
 OBJDIR = ./obj
-OBJECTS = $(OBJDIR)/init.o
+OBJECTS = $(OBJDIR)/init.o $(OBJDIR)/sys16.o $(OBJDIR)/boot.o
 
 OUTDIR = ./bin
 OUT = $(OUTDIR)/boot.bin
@@ -47,7 +47,8 @@ OUT = $(OUTDIR)/boot.bin
 #parameters
 DEFINE += 
 AFLAGS += -f elf
-LFLAGS += -T ./link.ld 
+CFLAGS += $(INCDIR) $(DEFINE) -masm=intel -g -O0 -m32 -Wall -Wextra -Werror -fno-builtin -nostdlib -nostartfiles -nodefaultlibs -nostdinc -ffreestanding -fno-exceptions
+LFLAGS += -melf_i386 -T ./link.ld -nostdlib --nmagic 
 OFLAGS += --strip-debug -O binary -j .text -j .bsig
 
 #Targets
@@ -66,4 +67,10 @@ $(OUT): MKDR $(OBJECTS)
 	
 $(OBJDIR)/init.o: $(SRCDIR)/init.s
 	$(ASM) $(AFLAGS) -o $@ $<
+	
+$(OBJDIR)/sys16.o: $(SRCDIR)/sys16.s
+	$(ASM) $(AFLAGS) -o $@ $<
+    
+$(OBJDIR)/boot.o: $(SRCDIR)/boot.c
+	$(CC) $(CFLAGS) -o $@ -c $<
 

@@ -29,39 +29,30 @@
 ;|
 ;| Project: JAHOS
 ;| Author: Steven 'Dreglor' Garcia
-;| Notes: _entry is offically the entry point but this code just prepares
+;| Notes: some assembler functions that are required in our C bootloader
 ;|	        for further stages
 ;|
-;| Date: Jan 21, 2012
+;| Date: Jan 24, 2012
 ;|
 ;\****************************************************************************/
 
-[BITS 16] ;the boot sector always starts in 16 bit mode
+[BITS 16]
 
+;export the symbol
+GLOBAL putc
 
-;linker imports
-EXTERN bmain ;expose C code entry
-EXTERN __STACK
+SECTION .text
 
-;linker exports
-GLOBAL _entry ;entry point which will be placed at 0x7C00
-
-;constants
-STACK_SIZE EQU 0x1000 ;reserve 4k
-
-SECTION .init ;this section hold the code that will prepare for the C program
-
-_entry:
-	;set up segments and jump into _init
-	MOV AX, 0x0 ;linker script takes care of the addressing
-	MOV DS, AX ;data segment
-	MOV ES, AX ;extra segment
-	MOV SS, AX ;stack segment
-	;code segment is already set
-	
-	;setup stack
-	MOV SP, __STACK + STACK_SIZE
-    
-	JMP bmain ;off to C land
+;put a character onto the screen
+putc:  
+    PUSH BP
+    MOV BP, SP
+    PUSHA
+    MOV AL, BYTE [BP + 6] ;get character passed to us
+    MOV AH, 0x0E ;set BIOS function
+    XOR BX, BX ;clear attribute
+    INT 0x10 ;call BIOS
+    POPA
+    POP BP
+    RET
 ;;
-
