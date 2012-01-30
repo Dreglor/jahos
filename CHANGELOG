@@ -9,3 +9,9 @@ Steven "Dreglor" Garcia
 
 [Bootloader1] - Added a "do nothing" bootloader
 Steven "Dreglor" Garcia
+
+[Bootloader2] - Added Hello world example in C
+Steven "Dreglor" Garcia
+
+[bootloader2] - Fixe minor problem with incorrect STACK symbols in linker script
+Steven "Dreglor" Garcia

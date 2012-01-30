@@ -41,13 +41,10 @@
 
 ;linker imports
 EXTERN bmain ;expose C code entry
-EXTERN __STACK
+EXTERN __STACK_END
 
 ;linker exports
 GLOBAL _entry ;entry point which will be placed at 0x7C00
-
-;constants
-STACK_SIZE EQU 0x1000 ;reserve 4k
 
 SECTION .init ;this section hold the code that will prepare for the C program
 
@@ -60,7 +57,7 @@ _entry:
 	;code segment is already set
 	
 	;setup stack
-	MOV SP, __STACK + STACK_SIZE
+	MOV SP, __STACK_END
     
 	JMP bmain ;off to C land
 ;;

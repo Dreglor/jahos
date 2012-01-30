@@ -15,6 +15,8 @@ SECTIONS
     {
         
         __STACK = .; /*define a stack symbol so we can point to it */
+        . += 0x1000; /*reserve 4k for the stack */
+        __STACK_END = .;
         *(COMMON)
         *(.bss)
     }
